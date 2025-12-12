@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="golden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>🏆 المليونير الذهبي - تحدّي العباقرة</title>
+    
+    <!-- Meta Tags متقدمة -->
+    <meta name="description" content="لعبة الذكاء الأكثر تحدياً في الوطن العربي، اربح مليون دولار وتحدى أذكى العقول">
+    <meta name="keywords" content="لعبة, ذكاء, مليونير, تحدي, أسئلة, مسابقة, مال">
+    <meta name="author" content="مطورو المليونير الذهبي">
+    <meta property="og:image" content="assets/images/social-preview.jpg">
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FFD700">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="المليونير الذهبي">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-192.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=El+Messiri:wght@400;500;600;700&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+    <!-- Splitting.js للأنيميشن -->
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+</head>
+<body>
+    <!-- Preloader متحرك -->
+    <div id="preloader" class="preloader active">
+        <div class="preloader-content">
+            <div class="coin-animation">
+                <div class="coin">
+                    <div class="front"></div>
+                    <div class="back"></div>
+                </div>
+                <div class="shine"></div>
+            </div>
+            <div class="loading-text" data-splitting>
+                جـاري تـحـمـيـل تـحـدي الـمـلـيـون
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="loading-progress"></div>
+            </div>
+            <div class="loading-stats">
+                <span class="stat"><i class="fas fa-users"></i> <span id="online-count">5,432</span> لاعبون</span>
+                <span class="stat"><i class="fas fa-trophy"></i> <span id="total-prize">12,345,678</span>$ محصلة</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Effects -->
+    <div class="bg-effects">
+        <div class="particles" id="particles-js"></div>
+        <div class="floating-coins">
+            <div class="coin" style="--delay: 0s; --x: 10%"></div>
+            <div class="coin" style="--delay: 1s; --x: 30%"></div>
+            <div class="coin" style="--delay: 2s; --x: 50%"></div>
+            <div class="coin" style="--delay: 3s; --x: 70%"></div>
+            <div class="coin" style="--delay: 4s; --x: 90%"></div>
+        </div>
+        <div class="light-rays"></div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="hidden">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-left">
+                <button class="menu-toggle" id="main-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="app-logo" id="app-logo">
+                    <i class="fas fa-crown"></i>
+                    <span>المليونير الذهبي</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="live-status">
+                    <span class="live-dot"></span>
+                    <span>مباشر</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="user-quick-info" id="user-quick-info">
+                    <div class="avatar" id="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <span class="username" id="header-username">زائر</span>
+                        <span class="balance" id="header-balance">0 $</span>
+                    </div>
+                    <div class="notification-badge" id="notification-badge">3</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Side Menu -->
+        <aside class="side-menu" id="side-menu">
+            <div class="menu-header">
+                <div class="user-profile">
+                    <div class="avatar-large" id="menu-avatar">
+                        <i class="fas fa-user"></i>
+                        <span class="level-badge">1</span>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="menu-username">زائر</h3>
+                        <p class="user-level">المستوى <span id="menu-level">1</span></p>
+                    </div>
+                </div>
+                <button class="close-menu" id="close-menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="menu-nav">
+                <a href="#home" class="menu-item active" data-screen="home">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="#play" class="menu-item" data-screen="play">
+                    <i class="fas fa-gamepad"></i>
+                    <span>العب الآن</span>
+                    <span class="badge new">جديد</span>
+                </a>
+                <a href="#daily-challenge" class="menu-item" data-screen="daily-challenge">
+                    <i class="fas fa-calendar-star"></i>
+                    <span>التحدي اليومي</span>
+                    <span class="badge hot">🔥</span>
+                </a>
+                <a href="#leaderboard" class="menu-item" data-screen="leaderboard">
+                    <i class="fas fa-trophy"></i>
+                    <span>المتصدرون</span>
+                </a>
+                <a href="#shop" class="menu-item" data-screen="shop">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>المتجر</span>
+                </a>
+                <a href="#achievements" class="menu-item" data-screen="achievements">
+                    <i class="fas fa-medal"></i>
+                    <span>الإنجازات</span>
+                </a>
+                <a href="#friends" class="menu-item" data-screen="friends">
+                    <i class="fas fa-users"></i>
+                    <span>الأصدقاء</span>
+                    <span class="badge">5</span>
+                </a>
+                <a href="#tournaments" class="menu-item" data-screen="tournaments">
+                    <i class="fas fa-flag-checkered"></i>
+                    <span>البطولات</span>
+                    <span class="badge">🎯</span>
+                </a>
+            </nav>
+            
+            <div class="menu-footer">
+                <div class="quick-stats">
+                    <div class="stat">
+                        <i class="fas fa-fire"></i>
+                        <span>تتابع 7 أيام</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-bolt"></i>
+                        <span>+50% رصيد</span>
+                    </div>
+                </div>
+                
+                <div class="menu-actions">
+                    <button class="btn-logout" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>تسجيل خروج</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content" id="main-content">
+            <!-- Home Screen -->
+            <div class="screen home-screen active" id="home-screen">
+                <div class="hero-section">
+                    <div class="hero-content animate__animated animate__fadeInUp">
+                        <h1 class="hero-title">
+                            <span class="gradient-text">تحدي المليون دولار</span>
+                            <br>يبدأ الآن!
+                        </h1>
+                        <p class="hero-subtitle">أثبت أنك الأذكى واربح الجائزة الكبرى</p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-card">
+                                <i class="fas fa-users"></i>
+                                <h3>25,843</h3>
+                                <p>لاعب نشط</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-trophy"></i>
+                                <h3>142</h3>
+                                <p>فائز هذا الأسبوع</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-gem"></i>
+                                <h3>1,234,567</h3>
+                                <p>دولار محصلة</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-actions">
+                            <button class="btn-play-now" id="quick-play-btn">
+                                <i class="fas fa-play"></i>
+                                <span>العب الآن</span>
+                                <div class="sparkle"></div>
+                            </button>
+                            <button class="btn-secondary" id="learn-more-btn">
+                                <i class="fas fa-info-circle"></i>
+                                <span>كيفية اللعب</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-visual">
+                        <div class="million-prize">
+                            <div class="prize-amount">$1,000,000</div>
+                            <div class="prize-label">الجائزة الكبرى</div>
+                        </div>
+                        <div class="floating-questions">
+                            <div class="question-card">?</div>
+                            <div class="question-card">؟</div>
+                            <div class="question-card">!</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Features Grid -->
+                <div class="features-section">
+                    <h2 class="section-title">ميزات اللعبة <span class="highlight">المميزة</span></h2>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>أسئلة ذكية</h3>
+                            <p>15 مستوى من الأسئلة المصممة بدقة لتحدي ذكائك</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-life-ring"></i>
+                            </div>
+                            <h3>مزايا مساعدة</h3>
+                            <p>استخدم مزايا 50:50، استشارة صديق، وتصويت الجمهور</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3>بطولات دورية</h3>
+                            <p>تنافس في البطولات وكسب جوائز حصرية</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>تحدي الأصدقاء</h3>
+                            <p>تحدى أصدقائك وشاهد من هو الأذكى</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Live Leaderboard -->
+                <div class="live-leaderboard">
+                    <div class="leaderboard-header">
+                        <h3><i class="fas fa-crown"></i> المتصدرون الآن</h3>
+                        <a href="#leaderboard" class="view-all">عرض الكل</a>
+                    </div>
+                    
+                    <div class="leaderboard-list">
+                        <!-- سيتم ملؤها ديناميكياً -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Play Screen -->
+            <div class="screen play-screen" id="play-screen">
+                <!-- سوف يتم تحميل محتوى اللعبة هنا ديناميكياً -->
+            </div>
+
+            <!-- Authentication Screens -->
+            <div class="screen auth-screen" id="auth-screen">
+                <!-- سوف يتم تحميل واجهات المصادقة هنا ديناميكياً -->
+            </div>
+
+            <!-- Other Screens will be dynamically loaded -->
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#home" class="nav-item active" data-screen="home">
+                <i class="fas fa-home"></i>
+                <span>الرئيسية</span>
+            </a>
+            <a href="#play" class="nav-item" data-screen="play">
+                <i class="fas fa-play-circle"></i>
+                <span>العب</span>
+            </a>
+            <a href="#shop" class="nav-item" data-screen="shop">
+                <i class="fas fa-store"></i>
+                <span>المتجر</span>
+            </a>
+            <a href="#profile" class="nav-item" data-screen="profile">
+                <i class="fas fa-user"></i>
+                <span>حسابي</span>
+            </a>
+        </nav>
+
+        <!-- Quick Action Buttons -->
+        <div class="quick-actions">
+            <button class="quick-action" id="quick-challenge" title="تحدي سريع">
+                <i class="fas fa-bolt"></i>
+            </button>
+            <button class="quick-action" id="quick-shop" title="متجر سريع">
+                <i class="fas fa-gem"></i>
+            </button>
+            <button class="quick-action" id="quick-help" title="مساعدة">
+                <i class="fas fa-question"></i>
+            </button>
+        </div>
+
+        <!-- Notification Center -->
+        <div class="notification-center" id="notification-center">
+            <div class="notification-header">
+                <h4><i class="fas fa-bell"></i> الإشعارات</h4>
+                <button class="clear-notifications" id="clear-notifications">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <div class="notification-list" id="notification-list">
+                <!-- الإشعارات تظهر هنا -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="music-player">
+        <button class="music-toggle" id="music-toggle">
+            <i class="fas fa-music"></i>
+            <span class="music-status">تشغيل</span>
+        </button>
+        <div class="volume-control">
+            <i class="fas fa-volume-up"></i>
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <!-- Core Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    
+    <!-- Core Systems -->
+    <script src="assets/js/core/config.js"></script>
+    <script src="assets/js/core/auth-system.js"></script>
+    <script src="assets/js/core/game-engine.js"></script>
+    <script src="assets/js/core/question-manager.js"></script>
+    
+    <!-- Modules -->
+    <script src="assets/js/modules/ui-manager.js"></script>
+    <script src="assets/js/modules/admin-panel.js"></script>
+    <script src="assets/js/modules/shop-system.js"></script>
+    <script src="assets/js/modules/social-features.js"></script>
+    <script src="assets/js/modules/achievements.js"></script>
+    
+    <!-- Utilities -->
+    <script src="assets/js/utils/animations.js"></script>
+    <script src="assets/js/utils/sounds.js"></script>
+    <script src="assets/js/utils/notifications.js"></script>
+    
+    <!-- Main App -->
+    <script src="assets/js/app.js"></script>
+    
+    <!-- Initialization -->
+    <script>
+        // Initialize Splitting for text animations
+        Splitting();
+        
+        // Initialize particles
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#FFD700" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#FFD700",
+                        opacity: 0.2,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" }
+                    }
+                }
+            });
+            
+            // Simulate loading progress
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress > 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        document.getElementById('preloader').classList.remove('active');
+                        document.getElementById('app').classList.remove('hidden');
+                        // Initialize main app
+                        window.MillionaireApp = new MillionaireApp();
+                    }, 500);
+                }
+                document.getElementById('loading-progress').style.width = progress + '%';
+            }, 100);
+            
+            // Skip loading
+            document.getElementById('preloader').addEventListener('click', function() {
+                clearInterval(progressInterval);
+                this.classList.remove('active');
+                document.getElementById('app').classList.remove('hidden');
+                window.MillionaireApp = new MillionaireApp();
+            });
+        });
+        
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('Service Worker registered:', reg))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>
