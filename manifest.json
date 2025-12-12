@@ -1,0 +1,143 @@
+{
+  "name": "المليونير الذهبي - تحدّي العباقرة",
+  "short_name": "المليونير",
+  "description": "لعبة الذكاء الأكثر تحدياً في الوطن العربي، اربح مليون دولار وتحدى أذكى العقول",
+  "start_url": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "ar",
+  "dir": "rtl",
+  "theme_color": "#0A1931",
+  "background_color": "#0A1931",
+  "categories": ["games", "education", "entertainment"],
+  "icons": [
+    {
+      "src": "assets/images/icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/images/screenshots/screenshot1.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "شاشة اللعبة الرئيسية"
+    },
+    {
+      "src": "assets/images/screenshots/screenshot2.jpg",
+      "sizes": "750x1334",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "واجهة الأسئلة"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "العب الآن",
+      "short_name": "العب",
+      "description": "ابدأ لعبة جديدة مباشرة",
+      "url": "/?play",
+      "icons": [
+        {
+          "src": "assets/images/icons/play-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "التحدي اليومي",
+      "short_name": "تحدي",
+      "description": "شارك في التحدي اليومي",
+      "url": "/?daily",
+      "icons": [
+        {
+          "src": "assets/images/icons/daily-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "المتصدرون",
+      "short_name": "الأفضل",
+      "description": "شاهد أفضل اللاعبين",
+      "url": "/?leaderboard",
+      "icons": [
+        {
+          "src": "assets/images/icons/leaderboard-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "protocol_handlers": [
+    {
+      "protocol": "web+millionaire",
+      "url": "/?invite=%s"
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "capture_links": "existing-client-navigate",
+  "handle_links": "preferred",
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "permissions": [
+    "notifications",
+    "clipboard-write",
+    "clipboard-read"
+  ],
+  "id": "/"
+}
