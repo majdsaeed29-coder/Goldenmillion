@@ -1,0 +1,160 @@
+<!-- إضافة هذا في index.html داخل main-content -->
+<div class="screen category-screen" id="category-screen">
+    <div class="category-container">
+        <div class="category-header">
+            <h1><i class="fas fa-layer-group"></i> اختر مجال الأسئلة</h1>
+            <p class="subtitle">اختر المجال الذي تريد أن تتحدى فيه معرفتك</p>
+        </div>
+
+        <div class="categories-grid">
+            <!-- الثقافة العامة -->
+            <div class="category-card" data-category="general">
+                <div class="category-icon" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>الثقافة العامة</h3>
+                <p>أسئلة متنوعة من مختلف المجالات</p>
+                <div class="category-stats">
+                    <span><i class="fas fa-question"></i> 500+ سؤال</span>
+                    <span class="difficulty easy">سهل</span>
+                </div>
+            </div>
+
+            <!-- العلوم -->
+            <div class="category-card" data-category="science">
+                <div class="category-icon" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3>العلوم</h3>
+                <p>الكيمياء، الفيزياء، الأحياء، والفضاء</p>
+                <div class="category-stats">
+                    <span><i class="fas fa-question"></i> 300+ سؤال</span>
+                    <span class="difficulty medium">متوسط</span>
+                </div>
+            </div>
+
+            <!-- التاريخ -->
+            <div class="category-card" data-category="history">
+                <div class="category-icon" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h3>التاريخ</h3>
+                <p>أحداث تاريخية وشخصيات مؤثرة</p>
+                <div class="category-stats">
+                    <span><i class="fas fa-question"></i> 400+ سؤال</span>
+                    <span class="difficulty medium">متوسط</span>
+                </div>
+            </div>
+
+            <!-- الجغرافيا -->
+            <div class="category-card" data-category="geography">
+                <div class="category-icon" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                    <i class="fas fa-globe-asia"></i>
+                </div>
+                <h3>الجغرافيا</h3>
+                <p>دول، عواصم، أنهار، وجبال</p>
+                <div class="category-stats">
+                    <span><i class="fas fa-question"></i> 350+ سؤال</span>
+                    <span class="difficulty easy">سهل</span>
+                </div>
+            </div>
+
+            <!-- الرياضة -->
+            <div class="category-card" data-category="sports">
+                <div class="category-icon" style="background: linear-gradient(135deg, #e67e22, #d35400);">
+                    <i class="fas fa-futbol"></i>
+                </div>
+                <h3>الرياضة</h3>
+                <p>ألعاب رياضية وبطولات عالمية</p>
+                <div class="category-stats">
+                    <span><i class="fas fa-question"></i> 250+ سؤال</span>
+                    <span class="difficulty easy">سهل</span>
+                </div>
+            </div>
+
+            <!-- الترفيه -->
+            <div class="category-card" data-category="entertainment">
+                <div class="category-icon" style="background: linear-gradient(135deg, #1abc9c, #16a085);">
+                    <i class="fas fa-film"></i>
+                </div>
+                <h3>الترفيه</h3>
+                <p>أفلام، مسلسلات، فنانون، ومشاهير</p>
+                <div class="category-stats">
+                    <span><i class="fas fa-question"></i> 450+ سؤال</span>
+                    <span class="difficulty easy">سهل</span>
+                </div>
+            </div>
+
+            <!-- الأطفال -->
+            <div class="category-card" data-category="kids">
+                <div class="category-icon" style="background: linear-gradient(135deg, #f1c40f, #f39c12);">
+                    <i class="fas fa-child"></i>
+                </div>
+                <h3>للأطفال</h3>
+                <p>أسئلة سهلة ومناسبة للأعمار الصغيرة</p>
+                <div class="category-stats">
+                    <span><i class="fas fa-question"></i> 200+ سؤال</span>
+                    <span class="difficulty very-easy">سهل جداً</span>
+                </div>
+            </div>
+
+            <!-- شاملة -->
+            <div class="category-card" data-category="all">
+                <div class="category-icon" style="background: linear-gradient(135deg, #e74c3c, #3498db, #2ecc71);">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h3>شاملة</h3>
+                <p>خليط من جميع المجالات - للتحدي الحقيقي!</p>
+                <div class="category-stats">
+                    <span><i class="fas fa-question"></i> 1000+ سؤال</span>
+                    <span class="difficulty hard">صعب</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- إعدادات اللعبة -->
+        <div class="game-settings">
+            <h2><i class="fas fa-gamepad"></i> إعدادات اللعبة</h2>
+            
+            <div class="settings-options">
+                <div class="setting-option">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="timer-toggle" checked>
+                        <span class="checkbox-custom"></span>
+                        <span class="label-text">تفعيل المؤقت (30 ثانية للسؤال)</span>
+                    </label>
+                    <p class="option-description">سيتم خصم الوقت عند كل سؤال</p>
+                </div>
+
+                <div class="setting-option">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="sounds-toggle" checked>
+                        <span class="checkbox-custom"></span>
+                        <span class="label-text">تشغيل المؤثرات الصوتية</span>
+                    </label>
+                    <p class="option-description">أصوات الإجابات الصحيحة والخاطئة</p>
+                </div>
+            </div>
+
+            <div class="difficulty-selector">
+                <h3>مستوى الصعوبة:</h3>
+                <div class="difficulty-options">
+                    <button class="difficulty-btn active" data-difficulty="normal">عادي</button>
+                    <button class="difficulty-btn" data-difficulty="hard">صعب</button>
+                    <button class="difficulty-btn" data-difficulty="expert">خبير</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار التحكم -->
+        <div class="category-actions">
+            <button class="btn-secondary" id="category-back-btn">
+                <i class="fas fa-arrow-right"></i> رجوع
+            </button>
+            <button class="btn-primary" id="start-game-btn">
+                <i class="fas fa-play"></i> بدء اللعبة
+                <span class="btn-subtext">المجموع: 15 سؤال - الجائزة: 1,000,000$</span>
+            </button>
+        </div>
+    </div>
+</div>
