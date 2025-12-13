@@ -1,7 +1,8 @@
+
 {
-  "name": "المليونير الذهبي - تحدّي العباقرة",
-  "short_name": "المليونير",
-  "description": "لعبة الذكاء الأكثر تحدياً في الوطن العربي، اربح مليون دولار وتحدى أذكى العقول",
+  "name": "المليونير الذهبي - تحدي العباقرة",
+  "short_name": "المليونير الذهبي",
+  "description": "اربح مليون دولار وتحدى أذكى العقول",
   "start_url": "/",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone"],
@@ -20,33 +21,8 @@
       "purpose": "any maskable"
     },
     {
-      "src": "assets/images/icons/icon-96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/images/icons/icon-128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/images/icons/icon-144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/images/icons/icon-152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
       "src": "assets/images/icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/images/icons/icon-384.png",
-      "sizes": "384x384",
       "type": "image/png"
     },
     {
@@ -61,14 +37,7 @@
       "sizes": "1280x720",
       "type": "image/jpeg",
       "form_factor": "wide",
-      "label": "شاشة اللعبة الرئيسية"
-    },
-    {
-      "src": "assets/images/screenshots/screenshot2.jpg",
-      "sizes": "750x1334",
-      "type": "image/jpeg",
-      "form_factor": "narrow",
-      "label": "واجهة الأسئلة"
+      "label": "شاشة اللعب الرئيسية"
     }
   ],
   "shortcuts": [
@@ -76,7 +45,7 @@
       "name": "العب الآن",
       "short_name": "العب",
       "description": "ابدأ لعبة جديدة مباشرة",
-      "url": "/?play",
+      "url": "/play",
       "icons": [
         {
           "src": "assets/images/icons/play-icon.png",
@@ -86,24 +55,12 @@
     },
     {
       "name": "التحدي اليومي",
-      "short_name": "تحدي",
+      "short_name": "يومي",
       "description": "شارك في التحدي اليومي",
-      "url": "/?daily",
+      "url": "/daily",
       "icons": [
         {
           "src": "assets/images/icons/daily-icon.png",
-          "sizes": "96x96"
-        }
-      ]
-    },
-    {
-      "name": "المتصدرون",
-      "short_name": "الأفضل",
-      "description": "شاهد أفضل اللاعبين",
-      "url": "/?leaderboard",
-      "icons": [
-        {
-          "src": "assets/images/icons/leaderboard-icon.png",
           "sizes": "96x96"
         }
       ]
