@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>المليونير الذهبي - اربح مليون دولار!</title>
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0A1931">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="المليونير الذهبي">
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="تحدي المليونير الذهبي - اختبر معرفتك واربح مليون دولار!">
+    <meta name="keywords" content="لعبة, مليونير, أسئلة, ثقافة, تحدي, مال, جائزة">
+    <meta name="author" content="المليونير الذهبي">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/game.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+</head>
+<body>
+    <!-- ========== شاشة التحميل ========== -->
+    <div id="loading-screen" class="screen active">
+        <div class="loading-container">
+            <div class="staircase-animation">
+                <div class="dollar" id="dollar-animation">
+                    <span>$</span>
+                </div>
+                <div class="stair" data-amount="100"></div>
+                <div class="stair" data-amount="200"></div>
+                <div class="stair" data-amount="300"></div>
+                <div class="stair" data-amount="500"></div>
+                <div class="stair" data-amount="1000"></div>
+                <div class="stair" data-amount="2000"></div>
+                <div class="stair" data-amount="5000"></div>
+                <div class="stair" data-amount="10000"></div>
+                <div class="stair" data-amount="16000"></div>
+                <div class="stair" data-amount="32000"></div>
+                <div class="stair" data-amount="64000"></div>
+                <div class="stair" data-amount="128000"></div>
+                <div class="stair" data-amount="250000"></div>
+                <div class="stair" data-amount="500000"></div>
+                <div class="stair" data-amount="1000000"></div>
+            </div>
+            
+            <div class="loading-info">
+                <h2 class="game-title">
+                    <span class="gold-text">المليونير</span>
+                    <span class="gold-text">الذهبي</span>
+                </h2>
+                
+                <div class="loading-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="loading-progress"></div>
+                    </div>
+                    <div class="progress-text" id="progress-text">0%</div>
+                </div>
+                
+                <div class="loading-tips">
+                    <p id="loading-tip">جاري تحميل الأسئلة...</p>
+                </div>
+                
+                <div class="loading-stats">
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <span>لاعبون اليوم: <span id="today-players">1,234</span></span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-trophy"></i>
+                        <span>مجموع الجوائز: <span id="total-prizes">12,345,678$</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========== شاشة التسجيل ========== -->
+    <div id="register-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-header">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <h1>المليونير الذهبي</h1>
+                </div>
+                <p class="subtitle">سجل الآن وابدأ رحلتك نحو المليون!</p>
+            </div>
+            
+            <div class="auth-form-container">
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="username">
+                            <i class="fas fa-user"></i>
+                            اسم المستخدم
+                        </label>
+                        <input type="text" id="username" required 
+                               placeholder="أدخل اسمك المستخدم" 
+                               minlength="3" maxlength="20">
+                        <div class="error-message" id="username-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i>
+                            كلمة المرور
+                        </label>
+                        <input type="password" id="password" required 
+                               placeholder="أدخل كلمة المرور" 
+                               minlength="6">
+                        <div class="error-message" id="password-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">
+                            <i class="fas fa-lock"></i>
+                            تأكيد كلمة المرور
+                        </label>
+                        <input type="password" id="confirm-password" required 
+                               placeholder="أعد إدخال كلمة المرور">
+                        <div class="error-message" id="confirm-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i>
+                            البريد الإلكتروني (اختياري)
+                        </label>
+                        <input type="email" id="email" 
+                               placeholder="example@email.com">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary btn-large" id="register-btn">
+                            <i class="fas fa-user-plus"></i>
+                            إنشاء حساب
+                        </button>
+                        
+                        <p class="auth-link">
+                            لديك حساب بالفعل؟ 
+                            <a href="#" id="show-login">سجل الدخول</a>
+                        </p>
+                    </div>
+                </form>
+                
+                <form id="login-form" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="login-username">
+                            <i class="fas fa-user"></i>
+                            اسم المستخدم
+                        </label>
+                        <input type="text" id="login-username" required 
+                               placeholder="اسم المستخدم">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">
+                            <i class="fas fa-lock"></i>
+                            كلمة المرور
+                        </label>
+                        <input type="password" id="login-password" required 
+                               placeholder="كلمة المرور">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary btn-large" id="login-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            تسجيل الدخول
+                        </button>
+                        
+                        <p class="auth-link">
+                            ليس لديك حساب؟ 
+                            <a href="#" id="show-register">إنشاء حساب</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="auth-features">
+                <h3><i class="fas fa-star"></i> مميزات التسجيل:</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> حفظ تقدمك في اللعبة</li>
+                    <li><i class="fas fa-check"></i> دخول لوحة المتصدرين</li>
+                    <li><i class="fas fa-check"></i> إشعارات بالتحديات الجديدة</li>
+                    <li><i class="fas fa-check"></i> مكافآت يومية مجانية</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========== القائمة الرئيسية ========== -->
+    <div id="main-menu" class="screen">
+        <div class="main-container">
+            <!-- Header -->
+            <div class="main-header">
+                <div class="user-info" id="user-info">
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <h3 id="display-username">ضيف</h3>
+                        <p class="balance" id="user-balance">0$ <i class="fas fa-coins"></i></p>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="icon-btn" id="settings-btn" title="الإعدادات">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="icon-btn" id="notifications-btn" title="الإشعارات">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notification-count">3</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Game Title -->
+            <div class="game-title-section">
+                <h1 class="main-title">
+                    <span class="gold-gradient">المليونير</span>
+                    <span class="gold-gradient">الذهبي</span>
+                </h1>
+                <p class="tagline">اختبر معرفتك واربح مليون دولار!</p>
+            </div>
+            
+            <!-- Main Buttons -->
+            <div class="menu-buttons">
+                <button class="menu-btn primary" id="play-btn">
+                    <div class="btn-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h3>العب الآن</h3>
+                        <p>ابدأ تحدي المليون</p>
+                    </div>
+                    <div class="btn-arrow">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </button>
+                
+                <button class="menu-btn" id="daily-challenge-btn">
+                    <div class="btn-icon">
+                        <i class="fas fa-calendar-star"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h3>التحدي اليومي</h3>
+                        <p>جائزة خاصة: <span class="prize">5,000$</span></p>
+                    </div>
+                    <div class="btn-badge hot">جديد</div>
+                </button>
+                
+                <button class="menu-btn" id="leaderboard-btn">
+                    <div class="btn-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h3>لوحة المتصدرين</h3>
+                        <p>شاهد أفضل اللاعبين</p>
+                    </div>
+                </button>
+                
+                <button class="menu-btn" id="shop-btn">
+                    <div class="btn-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h3>المتجر</h3>
+                        <p>اشترِ مميزات خاصة</p>
+                    </div>
+                    <div class="btn-badge sale">خصم 30%</div>
+                </button>
+                
+                <button class="menu-btn" id="achievements-btn">
+                    <div class="btn-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h3>الإنجازات</h3>
+                        <p>اكسب مكافآت إضافية</p>
+                    </div>
+                </button>
+                
+                <button class="menu-btn" id="how-to-play-btn">
+                    <div class="btn-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h3>كيفية اللعب</h3>
+                        <p>تعرف على قواعد اللعبة</p>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- Live Stats -->
+            <div class="live-stats">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-info">
+                        <h4>لاعبون نشطون</h4>
+                        <p id="active-players">2,543</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-bolt"></i>
+                    <div class="stat-info">
+                        <h4>ألعاب الآن</h4>
+                        <p id="current-games">156</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-coins"></i>
+                    <div class="stat-info">
+                        <h4>رصيد اليوم</h4>
+                        <p id="today-winnings">234,567$</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="quick-btn" id="quick-play">
+                    <i class="fas fa-bolt"></i>
+                    <span>لعبة سريعة</span>
+                </button>
+                <button class="quick-btn" id="invite-friend">
+                    <i class="fas fa-user-plus"></i>
+                    <span>ادعُ صديق</span>
+                </button>
+                <button class="quick-btn" id="watch-ad">
+                    <i class="fas fa-gem"></i>
+                    <span>شاهد إعلان</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========== شاشة اختيار المجال ========== -->
+    <div id="category-screen" class="screen">
+        <div class="category-container">
+            <div class="screen-header">
+                <button class="back-btn" id="back-to-menu">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <h2>اختر مجال الأسئلة</h2>
+                <div class="header-extra">
+                    <span id="selected-category-count">0/8</span>
+                </div>
+            </div>
+            
+            <div class="category-selection">
+                <div class="category-grid">
+                    <div class="category-card" data-category="general">
+                        <div class="category-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>الثقافة العامة</h3>
+                        <p>أسئلة متنوعة من جميع المجالات</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-question"></i> 500 سؤال</span>
+                            <span class="difficulty easy">سهل</span>
+                        </div>
+                        <div class="checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="science">
+                        <div class="category-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>العلوم</h3>
+                        <p>كيمياء، فيزياء، أحياء، فضاء</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-question"></i> 350 سؤال</span>
+                            <span class="difficulty medium">متوسط</span>
+                        </div>
+                        <div class="checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="history">
+                        <div class="category-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <h3>التاريخ</h3>
+                        <p>أحداث تاريخية وشخصيات مؤثرة</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-question"></i> 400 سؤال</span>
+                            <span class="difficulty medium">متوسط</span>
+                        </div>
+                        <div class="checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="geography">
+                        <div class="category-icon">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <h3>الجغرافيا</h3>
+                        <p>دول، عواصم، أنهار، جبال</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-question"></i> 300 سؤال</span>
+                            <span class="difficulty easy">سهل</span>
+                        </div>
+                        <div class="checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="sports">
+                        <div class="category-icon">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <h3>الرياضة</h3>
+                        <p>ألعاب رياضية وبطولات عالمية</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-question"></i> 250 سؤال</span>
+                            <span class="difficulty easy">سهل</span>
+                        </div>
+                        <div class="checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="entertainment">
+                        <div class="category-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3>الترفيه</h3>
+                        <p>أفلام، مسلسلات، فنانون، مشاهير</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-question"></i> 450 سؤال</span>
+                            <span class="difficulty easy">سهل</span>
+                        </div>
+                        <div class="checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="kids">
+                        <div class="category-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h3>للأطفال</h3>
+                        <p>أسئلة سهلة ومناسبة للأعمار الصغيرة</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-question"></i> 200 سؤال</span>
+                            <span class="difficulty very-easy">سهل جداً</span>
+                        </div>
+                        <div class="checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="all">
+                        <div class="category-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3>شاملة</h3>
+                        <p>خليط من جميع المجالات - للتحدي!</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-question"></i> 1000+ سؤال</span>
+                            <span class="difficulty hard">صعب</span>
+                        </div>
+                        <div class="checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-settings">
+                <h3><i class="fas fa-cog"></i> إعدادات اللعبة</h3>
+                
+                <div class="settings-grid">
+                    <div class="setting-option">
+                        <div class="setting-info">
+                            <h4>المؤقت التلقائي</h4>
+                            <p>30 ثانية لكل سؤال</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="timer-toggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-option">
+                        <div class="setting-info">
+                            <h4>المؤثرات الصوتية</h4>
+                            <p>أصوات الإجابات والترقيات</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="sound-toggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-option">
+                        <div class="setting-info">
+                            <h4>الاهتزاز</h4>
+                            <p>اهتزاز عند الأحداث المهمة</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="vibration-toggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="difficulty-selection">
+                    <h4>مستوى الصعوبة:</h4>
+                    <div class="difficulty-buttons">
+                        <button class="difficulty-btn active" data-difficulty="easy">سهل</button>
+                        <button class="difficulty-btn" data-difficulty="medium">متوسط</button>
+                        <button class="difficulty-btn" data-difficulty="hard">صعب</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn-secondary" id="category-cancel">
+                    إلغاء
+                </button>
+                <button class="btn-primary" id="start-game">
+                    <i class="fas fa-play"></i>
+                    بدء اللعبة
+                    <span class="subtext">15 سؤال - الجائزة: 1,000,000$</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========== شاشة اللعبة ========== -->
+    <div id="game-screen" class="screen">
+        <div class="game-container">
+            <!-- Game Header -->
+            <div class="game-header">
+                <div class="player-info">
+                    <div class="player-avatar">
+                        <i class="fas fa-user"></i>
+                        <span class="level-badge" id="player-level">1</span>
+                    </div>
+                    <div class="player-details">
+                        <h3 id="game-username">ضيف</h3>
+                        <p class="live-status">
+                            <span class="dot"></span>
+                            جاري اللعب
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="game-stats">
+                    <div class="stat">
+                        <i class="fas fa-coins"></i>
+                        <span id="current-prize">0$</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-question"></i>
+                        <span id="current-question">1/15</span>
+                    </div>
+                    <div class="stat timer" id="timer-container">
+                        <i class="fas fa-clock"></i>
+                        <span id="game-timer">30</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Prize Ladder -->
+            <div class="prize-ladder">
+                <div class="ladder-container">
+                    <div class="ladder-item safe" data-level="15" data-prize="1,000,000">
+                        <span class="level">15</span>
+                        <span class="prize">1,000,000$</span>
+                        <div class="milestone"></div>
+                    </div>
+                    <div class="ladder-item" data-level="14" data-prize="500,000">
+                        <span class="level">14</span>
+                        <span class="prize">500,000$</span>
+                    </div>
+                    <div class="ladder-item" data-level="13" data-prize="250,000">
+                        <span class="level">13</span>
+                        <span class="prize">250,000$</span>
+                    </div>
+                    <div class="ladder-item safe" data-level="12" data-prize="128,000">
+                        <span class="level">12</span>
+                        <span class="prize">128,000$</span>
+                        <div class="milestone"></div>
+                    </div>
+                    <div class="ladder-item" data-level="11" data-prize="64,000">
+                        <span class="level">11</span>
+                        <span class="prize">64,000$</span>
+                    </div>
+                    <div class="ladder-item" data-level="10" data-prize="32,000">
+                        <span class="level">10</span>
+                        <span class="prize">32,000$</span>
+                    </div>
+                    <div class="ladder-item safe" data-level="9" data-prize="16,000">
+                        <span class="level">9</span>
+                        <span class="prize">16,000$</span>
+                        <div class="milestone"></div>
+                    </div>
+                    <div class="ladder-item" data-level="8" data-prize="10,000">
+                        <span class="level">8</span>
+                        <span class="prize">10,000$</span>
+                    </div>
+                    <div class="ladder-item" data-level="7" data-prize="5,000">
+                        <span class="level">7</span>
+                        <span class="prize">5,000$</span>
+                    </div>
+                    <div class="ladder-item" data-level="6" data-prize="2,000">
+                        <span class="level">6</span>
+                        <span class="prize">2,000$</span>
+                    </div>
+                    <div class="ladder-item safe" data-level="5" data-prize="1,000">
+                        <span class="level">5</span>
+                        <span class="prize">1,000$</span>
+                        <div class="milestone"></div>
+                    </div>
+                    <div class="ladder-item" data-level="4" data-prize="500">
+                        <span class="level">4</span>
+                        <span class="prize">500$</span>
+                    </div>
+                    <div class="ladder-item" data-level="3" data-prize="300">
+                        <span class="level">3</span>
+                        <span class="prize">300$</span>
+                    </div>
+                    <div class="ladder-item" data-level="2" data-prize="200">
+                        <span class="level">2</span>
+                        <span class="prize">200$</span>
+                    </div>
+                    <div class="ladder-item active" data-level="1" data-prize="100">
+                        <span class="level">1</span>
+                        <span class="prize">100$</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question Area -->
+            <div class="question-area">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="category-badge" id="question-category">الثقافة العامة</span>
+                        <span class="question-number" id="question-number">سؤال 1 من 15</span>
+                    </div>
+                    
+                    <div class="question-text" id="question-text">
+                        ما هي عاصمة فرنسا؟
+                    </div>
+                    
+                    <div class="answers-grid" id="answers-container">
+                        <div class="answer-option" data-index="0">
+                            <div class="option-letter">أ</div>
+                            <div class="option-text">لندن</div>
+                        </div>
+                        <div class="answer-option" data-index="1">
+                            <div class="option-letter">ب</div>
+                            <div class="option-text">برلين</div>
+                        </div>
+                        <div class="answer-option" data-index="2">
+                            <div class="option-letter">ج</div>
+                            <div class="option-text">باريس</div>
+                        </div>
+                        <div class="answer-option" data-index="3">
+                            <div class="option-letter">د</div>
+                            <div class="option-text">مدريد</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lifelines -->
+            <div class="lifelines-area">
+                <h3><i class="fas fa-life-ring"></i> وسائل المساعدة</h3>
+                <div class="lifelines-grid">
+                    <button class="lifeline-btn" id="lifeline-50-50" data-lifeline="50-50">
+                        <div class="lifeline-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <span class="lifeline-name">50:50</span>
+                        <span class="lifeline-desc">حذف إجابتين خاطئتين</span>
+                    </button>
+                    
+                    <button class="lifeline-btn" id="lifeline-friend" data-lifeline="friend">
+                        <div class="lifeline-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <span class="lifeline-name">استشارة صديق</span>
+                        <span class="lifeline-desc">اسأل صديقك الخبير</span>
+                    </button>
+                    
+                    <button class="lifeline-btn" id="lifeline-audience" data-lifeline="audience">
+                        <div class="lifeline-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="lifeline-name">رأي الجمهور</span>
+                        <span class="lifeline-desc">تصويت الجمهور للإجابة</span>
+                    </button>
+                </div>
+                
+                <div class="ad-skip">
+                    <button class="ad-btn" id="skip-question-btn">
+                        <i class="fas fa-ad"></i>
+                        <span>تخطي السؤال</span>
+                        <small>شاهد إعلان لتخطي هذا السؤال</small>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Game Controls -->
+            <div class="game-controls">
+                <button class="control-btn withdraw" id="withdraw-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    انسحاب
+                    <span class="withdraw-amount" id="withdraw-amount">100$</span>
+                </button>
+                
+                <button class="control-btn" id="confirm-answer" disabled>
+                    تأكيد الإجابة
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Lifeline Modals -->
+        <div class="lifeline-modal" id="friend-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-phone-alt"></i> استشارة صديق</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="friend-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <p class="friend-name">الدكتور أحمد - خبير في <span id="friend-expertise">الثقافة العامة</span></p>
+                    <p class="friend-answer" id="friend-suggestion">
+                        "أعتقد أن الإجابة الصحيحة هي <strong>باريس</strong>"
+                    </p>
+                    <p class="friend-confidence">
+                        <i class="fas fa-chart-line"></i>
+                        ثقته في الإجابة: <span class="confidence-level">85%</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="lifeline-modal" id="audience-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-users"></i> رأي الجمهور</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="audience-poll">
+                        <div class="poll-option" data-option="0">
+                            <div class="poll-bar" style="width: 15%"></div>
+                            <span class="poll-label">أ: لندن</span>
+                            <span class="poll-percent">15%</span>
+                        </div>
+                        <div class="poll-option" data-option="1">
+                            <div class="poll-bar" style="width: 5%"></div>
+                            <span class="poll-label">ب: برلين</span>
+                            <span class="poll-percent">5%</span>
+                        </div>
+                        <div class="poll-option" data-option="2">
+                            <div class="poll-bar" style="width: 75%"></div>
+                            <span class="poll-label">ج: باريس</span>
+                            <span class="poll-percent">75%</span>
+                        </div>
+                        <div class="poll-option" data-option="3">
+                            <div class="poll-bar" style="width: 5%"></div>
+                            <span class="poll-label">د: مدريد</span>
+                            <span class="poll-percent">5%</span>
+                        </div>
+                    </div>
+                    <p class="poll-total">
+                        <i class="fas fa-users"></i>
+                        عدد المصوتين: <span id="total-votes">1,234</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========== شاشة النتيجة ========== -->
+    <div id="result-screen" class="screen">
+        <div class="result-container">
+            <div class="result-header">
+                <h1 class="result-title" id="result-title">🎉 مبروك! 🎉</h1>
+                <p class="result-subtitle" id="result-subtitle">لقد ربحت</p>
+            </div>
+            
+            <div class="prize-display">
+                <div class="prize-amount" id="final-prize">1,000$</div>
+                <div class="prize-label">دولار أمريكي</div>
+            </div>
+            
+            <div class="result-stats">
+                <div class="stat">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="stat-info">
+                        <h4>إجابات صحيحة</h4>
+                        <p id="correct-answers">5/15</p>
+                    </div>
+                </div>
+                
+                <div class="stat">
+                    <i class="fas fa-trophy"></i>
+                    <div class="stat-info">
+                        <h4>أعلى مستوى</h4>
+                        <p id="highest-level">المرحلة 6</p>
+                    </div>
+                </div>
+                
+                <div class="stat">
+                    <i class="fas fa-coins"></i>
+                    <div class="stat-info">
+                        <h4>رصيدك الإجمالي</h4>
+                        <p id="total-balance">1,500$</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-actions">
+                <button class="btn-primary" id="play-again-btn">
+                    <i class="fas fa-redo"></i>
+                    العب مرة أخرى
+                </button>
+                
+                <button class="btn-secondary" id="share-result-btn">
+                    <i class="fas fa-share"></i>
+                    شارك نتيجتك
+                </button>
+                
+                <button class="btn-secondary" id="back-to-home-btn">
+                    <i class="fas fa-home"></i>
+                    الرئيسية
+                </button>
+            </div>
+            
+            <div class="result-leaderboard">
+                <h3><i class="fas fa-crown"></i> تصنيفك هذا الأسبوع</h3>
+                <div class="leaderboard-entry">
+                    <span class="rank">#42</span>
+                    <span class="player-name" id="player-rank-name">أنت</span>
+                    <span class="player-score" id="player-rank-score">1,000$</span>
+                </div>
+            </div>
+            
+            <div class="result-ad">
+                <p>شاهد إعلانًا لمضاعفة ربحك!</p>
+                <button class="ad-btn" id="double-prize-btn">
+                    <i class="fas fa-gem"></i>
+                    اضرب ربحك ×2
+                    <small>شاهد إعلان 30 ثانية</small>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========== شاشة الإعدادات ========== -->
+    <div id="settings-screen" class="screen">
+        <div class="settings-container">
+            <div class="settings-header">
+                <button class="back-btn" id="back-from-settings">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <h2>الإعدادات</h2>
+            </div>
+            
+            <div class="settings-content">
+                <!-- الصوت والموسيقى -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-volume-up"></i> الصوت والموسيقى</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>الموسيقى الخلفية</h4>
+                            <p>تشغيل الموسيقى خلال اللعب</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="bg-music" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>المؤثرات الصوتية</h4>
+                            <p>أصوات الإجابات والترقيات</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="sound-effects" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>مستوى الصوت</h4>
+                            <p>التحكم بمستوى الصوت العام</p>
+                        </div>
+                        <input type="range" id="volume-slider" min="0" max="100" value="70">
+                        <span class="volume-value" id="volume-value">70%</span>
+                    </div>
+                </div>
+                
+                <!-- الاهتزاز -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-vibrate"></i> الاهتزاز</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>تفعيل الاهتزاز</h4>
+                            <p>اهتزاز الجهاز عند الأحداث المهمة</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="vibration" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- اللعبة -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-gamepad"></i> إعدادات اللعبة</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>المؤقت التلقائي</h4>
+                            <p>30 ثانية لكل سؤال تلقائياً</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="auto-timer" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>رسائل التأكيد</h4>
+                            <p>طلب تأكيد قبل الانسحاب</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="confirmations" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>الوضع الليلي</h4>
+                            <p>واجهة داكنة للعين</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="dark-mode">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- الحساب -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-user-cog"></i> الحساب</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>تسجيل الخروج</h4>
+                            <p>إنهاء الجلسة الحالية</p>
+                        </div>
+                        <button class="btn-logout" id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            تسجيل الخروج
+                        </button>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>حذف الحساب</h4>
+                            <p>حذف جميع بياناتك</p>
+                        </div>
+                        <button class="btn-delete" id="delete-account-btn">
+                            <i class="fas fa-trash"></i>
+                            حذف الحساب
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- حول التطبيق -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-info-circle"></i> حول التطبيق</h3>
+                    
+                    <div class="app-info">
+                        <div class="info-item">
+                            <span>الإصدار:</span>
+                            <strong>2.0.0</strong>
+                        </div>
+                        <div class="info-item">
+                            <span>المطور:</span>
+                            <strong>فريق المليونير الذهبي</strong>
+                        </div>
+                        <div class="info-item">
+                            <span>التحديث الأخير:</span>
+                            <strong>يناير 2024</strong>
+                        </div>
+                        <div class="info-item">
+                            <span>الدعم:</span>
+                            <strong>support@millionaire.com</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="app-actions">
+                        <button class="btn-secondary" id="rate-app-btn">
+                            <i class="fas fa-star"></i>
+                            قيم التطبيق
+                        </button>
+                        <button class="btn-secondary" id="share-app-btn">
+                            <i class="fas fa-share"></i>
+                            شارك التطبيق
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========== شاشة المتجر ========== -->
+    <div id="shop-screen" class="screen">
+        <div class="shop-container">
+            <div class="shop-header">
+                <button class="back-btn" id="back-from-shop">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <h2><i class="fas fa-store"></i> متجر المليونير</h2>
+                <div class="user-balance">
+                    <i class="fas fa-coins"></i>
+                    <span id="shop-balance">0$</span>
+                </div>
+            </div>
+            
+            <div class="shop-tabs">
+                <button class="shop-tab active" data-tab="coins">العملات</button>
+                <button class="shop-tab" data-tab="powerups">وسائل المساعدة</button>
+                <button class="shop-tab" data-tab="subscriptions">الاشتراكات</button>
+                <button class="shop-tab" data-tab="themes">السمات</button>
+            </div>
+            
+            <div class="shop-content">
+                <!-- العملات -->
+                <div class="shop-tab-content active" id="coins-tab">
+                    <div class="coins-grid">
+                        <div class="coin-package" data-amount="1000" data-price="4.99">
+                            <div class="package-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="package-info">
+                                <h3>1,000 عملة</h3>
+                                <p>مثالي للبداية</p>
+                            </div>
+                            <div class="package-price">
+                                <span class="price">4.99$</span>
+                                <span class="discount">6.99$</span>
+                            </div>
+                            <button class="btn-buy" data-product="coins-1000">شراء</button>
+                        </div>
+                        
+                        <div class="coin-package featured" data-amount="5000" data-price="19.99">
+                            <div class="package-badge">الأكثر مبيعاً</div>
+                            <div class="package-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="package-info">
+                                <h3>5,000 عملة</h3>
+                                <p>+500 عملة مجانية</p>
+                            </div>
+                            <div class="package-price">
+                                <span class="price">19.99$</span>
+                                <span class="discount">24.99$</span>
+                            </div>
+                            <button class="btn-buy" data-product="coins-5000">شراء</button>
+                        </div>
+                        
+                        <div class="coin-package" data-amount="10000" data-price="34.99">
+                            <div class="package-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <div class="package-info">
+                                <h3>10,000 عملة</h3>
+                                <p>+1,500 عملة مجانية</p>
+                            </div>
+                            <div class="package-price">
+                                <span class="price">34.99$</span>
+                                <span class="discount">44.99$</span>
+                            </div>
+                            <button class="btn-buy" data-product="coins-10000">شراء</button>
+                        </div>
+                        
+                        <div class="coin-package" data-amount="25000" data-price="79.99">
+                            <div class="package-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="package-info">
+                                <h3>25,000 عملة</h3>
+                                <p>+5,000 عملة مجانية</p>
+                            </div>
+                            <div class="package-price">
+                                <span class="price">79.99$</span>
+                                <span class="discount">99.99$</span>
+                            </div>
+                            <button class="btn-buy" data-product="coins-25000">شراء</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- وسائل المساعدة -->
+                <div class="shop-tab-content" id="powerups-tab">
+                    <div class="powerups-grid">
+                        <div class="powerup-item" data-id="extra-life">
+                            <div class="powerup-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="powerup-info">
+                                <h3>حياة إضافية</h3>
+                                <p>خطأ إضافي في اللعبة</p>
+                                <div class="powerup-price">
+                                    <i class="fas fa-coins"></i>
+                                    <span>500 عملة</span>
+                                </div>
+                            </div>
+                            <button class="btn-buy">شراء</button>
+                        </div>
+                        
+                        <div class="powerup-item" data-id="time-extension">
+                            <div class="powerup-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="powerup-info">
+                                <h3>تمديد الوقت</h3>
+                                <p>+15 ثانية لكل سؤال</p>
+                                <div class="powerup-price">
+                                    <i class="fas fa-coins"></i>
+                                    <span>300 عملة</span>
+                                </div>
+                            </div>
+                            <button class="btn-buy">شراء</button>
+                        </div>
+                        
+                        <div class="powerup-item" data-id="hint">
+                            <div class="powerup-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="powerup-info">
+                                <h3>تلميح</h3>
+                                <p>تلميح للإجابة الصحيحة</p>
+                                <div class="powerup-price">
+                                    <i class="fas fa-coins"></i>
+                                    <span>750 عملة</span>
+                                </div>
+                            </div>
+                            <button class="btn-buy">شراء</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- الاشتراكات -->
+                <div class="shop-tab-content" id="subscriptions-tab">
+                    <div class="subscription-plan featured">
+                        <div class="plan-badge">الأفضل</div>
+                        <div class="plan-header">
+                            <h3>اشتراك VIP</h3>
+                            <p class="plan-price">9.99$ <span>/شهر</span></p>
+                        </div>
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> إزالة جميع الإعلانات</li>
+                                <li><i class="fas fa-check"></i> 1000 عملة مجانية شهرياً</li>
+                                <li><i class="fas fa-check"></i> وسائل مساعدة غير محدودة</li>
+                                <li><i class="fas fa-check"></i> دخول البطولات الحصرية</li>
+                                <li><i class="fas fa-check"></i> دعم مميز</li>
+                            </ul>
+                        </div>
+                        <button class="btn-subscribe" id="subscribe-vip">اشترك الآن</button>
+                    </div>
+                    
+                    <div class="subscription-plan">
+                        <div class="plan-header">
+                            <h3>اشتراك بدون إعلانات</h3>
+                            <p class="plan-price">4.99$ <span>/شهر</span></p>
+                        </div>
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> إزالة جميع الإعلانات</li>
+                                <li><i class="fas fa-check"></i> 500 عملة مجانية شهرياً</li>
+                                <li><i class="fas fa-check"></i> وسائل مساعدة إضافية</li>
+                            </ul>
+                        </div>
+                        <button class="btn-subscribe" id="subscribe-no-ads">اشترك الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========== شاشة لوحة المتصدرين ========== -->
+    <div id="leaderboard-screen" class="screen">
+        <div class="leaderboard-container">
+            <div class="leaderboard-header">
+                <button class="back-btn" id="back-from-leaderboard">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <h2><i class="fas fa-trophy"></i> لوحة المتصدرين</h2>
+                <div class="time-filter">
+                    <select id="leaderboard-filter">
+                        <option value="daily">اليوم</option>
+                        <option value="weekly">هذا الأسبوع</option>
+                        <option value="monthly">هذا الشهر</option>
+                        <option value="alltime">كل الوقت</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="leaderboard-content">
+                <!-- المستخدم الحالي -->
+                <div class="current-user-rank">
+                    <div class="user-rank-info">
+                        <span class="rank-label">تصنيفك</span>
+                        <span class="rank-number" id="user-rank">#42</span>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-details">
+                            <h4 id="leaderboard-username">ضيف</h4>
+                            <p class="user-score" id="user-score">1,000$</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- قائمة المتصدرين -->
+                <div class="leaderboard-list">
+                    <div class="leaderboard-item first">
+                        <div class="item-rank">🥇</div>
+                        <div class="item-avatar">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="item-info">
+                            <h4>أحمد النابغة</h4>
+                            <p class="item-stats">15 سؤال | 1,000,000$</p>
+                        </div>
+                        <div class="item-score">1,000,000$</div>
+                    </div>
+                    
+                    <div class="leaderboard-item second">
+                        <div class="item-rank">🥈</div>
+                        <div class="item-avatar">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="item-info">
+                            <h4>سارة الذكية</h4>
+                            <p class="item-stats">14 سؤال | 500,000$</p>
+                        </div>
+                        <div class="item-score">500,000$</div>
+                    </div>
+                    
+                    <div class="leaderboard-item third">
+                        <div class="item-rank">🥉</div>
+                        <div class="item-avatar">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="item-info">
+                            <h4>محمد العبقري</h4>
+                            <p class="item-stats">13 سؤال | 250,000$</p>
+                        </div>
+                        <div class="item-score">250,000$</div>
+                    </div>
+                    
+                    <!-- باقي القائمة -->
+                    <div id="leaderboard-entries">
+                        <!-- سيتم ملؤها ديناميكياً -->
+                    </div>
+                </div>
+                
+                <!-- إحصائيات إضافية -->
+                <div class="leaderboard-stats">
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h4>إجمالي اللاعبين</h4>
+                            <p id="total-players">12,345</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat">
+                        <i class="fas fa-coins"></i>
+                        <div class="stat-info">
+                            <h4>مجموع الجوائز</h4>
+                            <p id="total-prize-money">12,345,678$</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat">
+                        <i class="fas fa-trophy"></i>
+                        <div class="stat-info">
+                            <h4>أعلى جائزة</h4>
+                            <p id="highest-prize">1,000,000$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ========== العناصر المشتركة ========== -->
+    
+    <!-- Music Player -->
+    <div class="music-player">
+        <button class="music-toggle" id="music-toggle">
+            <i class="fas fa-music"></i>
+            <span class="music-status">تشغيل</span>
+        </button>
+        <div class="volume-control">
+            <i class="fas fa-volume-up"></i>
+            <input type="range" id="master-volume" min="0" max="100" value="70">
+        </div>
+    </div>
+    
+    <!-- Notifications -->
+    <div class="notifications-container" id="notifications-container">
+        <div class="notification-header">
+            <h4><i class="fas fa-bell"></i> الإشعارات</h4>
+            <button class="clear-notifications" id="clear-notifications">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        <div class="notifications-list" id="notifications-list">
+            <!-- ستتم إضافة الإشعارات ديناميكياً -->
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmation-modal">
+        <div class="modal-content">
+            <h3 id="modal-title">تأكيد الإجراء</h3>
+            <p id="modal-message">هل أنت متأكد من أنك تريد المتابعة؟</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="modal-cancel">إلغاء</button>
+                <button class="btn-primary" id="modal-confirm">تأكيد</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript Files -->
+    <script src="assets/js/sounds.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/questions.js"></script>
+    <script src="assets/js/game-engine.js"></script>
+    <script src="assets/js/shop.js"></script>
+    <script src="assets/js/leaderboard.js"></script>
+    <script src="assets/js/app.js"></script>
+    
+    <!-- Initialization -->
+    <script>
+        // بدء التطبيق عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة التطبيق
+            if (typeof MillionaireApp !== 'undefined') {
+                window.app = new MillionaireApp();
+            } else {
+                console.error('لم يتم تحميل تطبيق المليونير');
+            }
+        });
+    </script>
+</body>
+</html>
