@@ -1,0 +1,146 @@
+<!-- إضافة هذا في index.html داخل main-content -->
+<div class="screen settings-screen" id="settings-screen">
+    <div class="settings-container">
+        <div class="settings-header">
+            <h1><i class="fas fa-cog"></i> الإعدادات</h1>
+            <button class="btn-back" id="settings-back-btn">
+                <i class="fas fa-arrow-right"></i> رجوع
+            </button>
+        </div>
+
+        <div class="settings-content">
+            <!-- قسم الصوت -->
+            <div class="settings-section">
+                <h2><i class="fas fa-volume-up"></i> الصوت والموسيقى</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>الموسيقى الخلفية</h3>
+                        <p>تشغيل الموسيقى الحماسية خلال اللعب</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="music-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>المؤثرات الصوتية</h3>
+                        <p>أصوات الإجابات والترقيات</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="sound-effects-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>مستوى الصوت</h3>
+                        <p>تحكم بمستوى الصوت العام</p>
+                    </div>
+                    <input type="range" id="volume-slider" min="0" max="100" value="50" class="volume-slider">
+                </div>
+            </div>
+
+            <!-- قسم الاهتزاز -->
+            <div class="settings-section">
+                <h2><i class="fas fa-vibrate"></i> الاهتزاز</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>تفعيل الاهتزاز</h3>
+                        <p>اهتزاز الجهاز عند الأحداث المهمة</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="vibration-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- قسم اللعبة -->
+            <div class="settings-section">
+                <h2><i class="fas fa-gamepad"></i> إعدادات اللعبة</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>المؤقت التلقائي</h3>
+                        <p>تفعيل المؤقت لكل سؤال</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="auto-timer-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>رسائل التأكيد</h3>
+                        <p>طلب تأكيد قبل الانسحاب</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="confirmations-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>الوضع الليلي</h3>
+                        <p>تبديل الواجهة للوضع الداكن</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="dark-mode-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- قسم الحساب -->
+            <div class="settings-section">
+                <h2><i class="fas fa-user-cog"></i> الحساب</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>تسجيل الخروج</h3>
+                        <p>إنهاء الجلسة الحالية</p>
+                    </div>
+                    <button class="btn-logout" id="settings-logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>حذف الحساب</h3>
+                        <p>حذف الحساب وجميع البيانات</p>
+                    </div>
+                    <button class="btn-delete-account" id="delete-account-btn">
+                        <i class="fas fa-trash"></i> حذف الحساب
+                    </button>
+                </div>
+            </div>
+
+            <!-- معلومات التطبيق -->
+            <div class="app-info">
+                <h3><i class="fas fa-info-circle"></i> معلومات التطبيق</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span>الإصدار:</span>
+                        <strong>2.0.0</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>التحديث الأخير:</span>
+                        <strong>يناير 2024</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>المطور:</span>
+                        <strong>فريق المليونير الذهبي</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
